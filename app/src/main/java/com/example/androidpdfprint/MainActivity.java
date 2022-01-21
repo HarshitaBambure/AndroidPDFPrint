@@ -37,6 +37,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btn_create_pdf = (Button)findViewById(R.id.btn_create_pdf);
 
-        Dexter.withActivity(this)
+               Dexter.withActivity(this)
                 .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new PermissionListener() {
                     @Override
@@ -73,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .check();
+
                 
     }
 
     private void createPDFFile(String path) {
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if(new File(path).exists())
             new File(path).delete();
         try {
@@ -98,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             float valueFontSize = 26.0f;
 
             //Custom font
-            BaseFont fontName = BaseFont.createFont("assets/fonts/brandon_medium.otf","UTF-8",BaseFont.EMBEDDED);
+            BaseFont fontName = BaseFont.createFont("res/font/roboto.ttf","UTF-8",BaseFont.EMBEDDED);
 
             //create title of document
             Font titleFont = new Font(fontName,20.0f,Font.NORMAL,BaseColor.BLACK);
@@ -114,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             addLineSeperator(document);
 
             addNewItem(document,"Order Date",Element.ALIGN_LEFT,orderNumberFont);
-            addNewItem(document,"12/01/2022",Element.ALIGN_LEFT,orderNumberValueFont);
+            addNewItem(document,date,Element.ALIGN_LEFT,orderNumberValueFont);
 
             addLineSeperator(document);
 
@@ -130,14 +135,20 @@ public class MainActivity extends AppCompatActivity {
             addLineSeperator(document);
 
             //item 1
-            addNewItemWithLeftAndRight(document,"pizza 20","(0.0%)",titleFont,orderNumberValueFont);
-            addNewItemWithLeftAndRight(document,"12.0*1000","12000.0",titleFont,orderNumberValueFont);
+            addNewItemWithLeftAndRight(document,"Burger","(1.0%)",titleFont,orderNumberValueFont);
+            addNewItemWithLeftAndRight(document,"20","1200.0",titleFont,orderNumberValueFont);
 
             addLineSeperator(document);
 
             //item 2
-            addNewItemWithLeftAndRight(document,"pizza 29","(0.0%)",titleFont,orderNumberValueFont);
-            addNewItemWithLeftAndRight(document,"12.0*1000","12000.0",titleFont,orderNumberValueFont);
+            addNewItemWithLeftAndRight(document,"Pizza","(0.0%)",titleFont,orderNumberValueFont);
+            addNewItemWithLeftAndRight(document,"12","1520.0",titleFont,orderNumberValueFont);
+
+            addLineSeperator(document);
+
+            //item 3
+            addNewItemWithLeftAndRight(document,"Sandwich","(0.0%)",titleFont,orderNumberValueFont);
+            addNewItemWithLeftAndRight(document,"10","1000.0",titleFont,orderNumberValueFont);
 
             addLineSeperator(document);
 
@@ -145,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             addLineSpace(document);
             addLineSpace(document);
 
-            addNewItemWithLeftAndRight(document,"total","85000",titleFont,orderNumberValueFont);
+            addNewItemWithLeftAndRight(document,"total","8500",titleFont,orderNumberValueFont);
 
             document.close();
             Toast.makeText(this,"Sucess",Toast.LENGTH_SHORT).show();

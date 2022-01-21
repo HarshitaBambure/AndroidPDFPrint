@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AllAndroidProject/AndroidPDFPrint/app/src/main/res/font/roboto.xml" value="0.15729166666666666" />
         <entry key="..\:/AllAndroidProject/AndroidPDFPrint/app/src/main/res/layout/activity_main.xml" value="0.12158054711246201" />
         <entry key="..\:/AllAndroidProject/AndroidPDFPrint/app/src/main/res/xml/provider_paths.xml" value="0.25" />
       </map>
