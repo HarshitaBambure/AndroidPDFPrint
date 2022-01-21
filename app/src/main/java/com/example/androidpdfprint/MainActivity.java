@@ -77,11 +77,10 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .check();
 
-                
     }
 
     private void createPDFFile(String path) {
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         if(new File(path).exists())
             new File(path).delete();
         try {
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             document.setPageSize(PageSize.A4);
             document.addCreationDate();
             document.addAuthor("Harshita");
-            document.addCreator("Global Software");
+            document.addCreator("Harshita Bambure");
 
             //Font Settings
             BaseColor colorAccent = new BaseColor(0,153,204,255);
